@@ -1,0 +1,5 @@
+documents/
+env/
+.env
+data/*/*.json
+*.grib2

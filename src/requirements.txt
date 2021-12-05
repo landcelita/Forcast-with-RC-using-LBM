@@ -1,0 +1,6 @@
+wget==3.2
+python-dotenv==0.19.2
+numpy==1.21.4
+ECCODES==1.3.3
+pyproj==3.3.0
+pygrib==2.1.4
