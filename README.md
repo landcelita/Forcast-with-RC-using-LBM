@@ -2,15 +2,15 @@
 
 ## Get Started
 
-you have to install these packages to your system in advance: python3.9, wgrib2, grib2json
+you have to install these packages to your system in advance: python3.9, python3-tk, tk-dev, wgrib2, grib2json
 
-Then, activate the venv environment,
+Then activate the venv environment,
 
 ```bash
 $ python3.9 -m venv env
 $ source env/bin/activate
 $ pip install -r requirements.txt
-$ cp .env.example .env (you should adapt .env file to your environment )
+$ cp .env.example .env (you should adapt .env file to your environment)
 ```
 
 when you deactivate venv,

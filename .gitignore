@@ -3,3 +3,4 @@ env/
 .env
 data/*/*.json
 *.grib2
+test
