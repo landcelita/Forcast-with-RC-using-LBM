@@ -4,3 +4,4 @@ env/
 data/*/*.json
 *.grib2
 test
+*.pyc
