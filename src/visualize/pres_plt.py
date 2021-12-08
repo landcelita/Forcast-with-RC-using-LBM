@@ -38,12 +38,14 @@ def gen_timestr_by_3h(start, stop):
 
 fig = plt.figure()
 
-START = date(2020, 1, 1)
-STOP = date(2021, 1, 1)
+YEAR = 2020
+START = date(YEAR, 1, 1)
+STOP = date(YEAR+1, 1, 1)
+DATA_DIR = os.getenv("DATA_DIR")
 
 timestr_gen = gen_timestr_by_3h(START, STOP)
 
-grbs = pygrib.open("data/2020/" + next(timestr_gen) + ".grib2")
+grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + next(timestr_gen) + ".grib2")
 grb = grbs.select()[0]
 
 pressure = grb.values
@@ -53,7 +55,7 @@ im = plt.imshow(pressure, cmap='jet', interpolation='nearest', animated=True)
 def update(*args):
     timestr = next(timestr_gen)
 
-    grbs = pygrib.open("data/2020/" + timestr + ".grib2")
+    grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + timestr + ".grib2")
     grb = grbs.select()[0]
 
     pressure = grb.values

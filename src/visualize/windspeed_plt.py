@@ -38,12 +38,14 @@ def gen_timestr_by_3h(start, stop):
 
 fig = plt.figure()
 
-START = date(2020, 1, 1)
-STOP = date(2021, 1, 1)
+YEAR = 2020
+START = date(YEAR, 1, 1)
+STOP = date(YEAR+1, 1, 1)
+DATA_DIR = os.getenv("DATA_DIR")
 
 timestr_gen = gen_timestr_by_3h(START, STOP)
 
-grbs = pygrib.open("data/2020/" + next(timestr_gen) + ".grib2")
+grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + next(timestr_gen) + ".grib2")
 grb1, grb2 = grbs.select()[1:3]
 
 ugrd = grb1.values
@@ -55,13 +57,13 @@ im = plt.imshow(windspeed, cmap='jet', interpolation='nearest', animated=True)
 def update(*args):
     timestr = next(timestr_gen)
 
-    grbs = pygrib.open("data/2020/" + timestr + ".grib2")
+    grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + timestr + ".grib2")
     grb1, grb2 = grbs.select()[1:3]
 
     ugrd = grb1.values
     vgrd = grb2.values
 
-    windspeed = ugrd ** 2 + vgrd ** 2
+    windspeed = np.sqrt(ugrd ** 2 + vgrd ** 2) * 10 # 10 times to enhance the contrast
 
     im.set_array(windspeed)
     plt.title(timestr[0:4] + "/" + timestr[4:6] + "/" + timestr[6:8])
