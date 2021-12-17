@@ -14,7 +14,7 @@ class LBM:
     This class makes Lattice Boltzmann Method(LBM)'s field which
     can be set with the velocity and density (or pressure). First,
     initialize the field with the args of size and viscosity.
-    Then, you can assign the the velocity and/or density of the field.
+    Then, you can assign the velocity and/or density of the field.
     Use forward_a_step() to stream and collide the field.
     
     Attributes:
