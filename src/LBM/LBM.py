@@ -10,12 +10,18 @@ DIRECTIONS = [(0,0), (0,1), (0,-1), (1,0), (-1,0), (1,1), (1,-1), (-1,1), (-1,-1
 
 class LBM:
     """The class of Lattice Boltzmann Method's field.
+
+    This class makes Lattice Boltzmann Method(LBM)'s field which
+    can be set with the velocity and density (or pressure). First,
+    initialize the field with the args of size and viscosity.
+    Then, you can assign the the velocity and/or density of the field.
+    Use forward_a_step() to stream and collide the field.
     
-    Attribute:
-        u (np.ndarray): Velocity of the field. 
+    Attributes:
+        u (np.ndarray): The velocity of the field. 
             u[0] is a horizontal, and u[1] is a vertical component.
-        rho (np.ndarray): density of the field.
-        field (np.ndarray): the field value of LBM.
+        rho (np.ndarray): The density of the field.
+        field (np.ndarray): The field value of LBM.
             directions are [0, N, S, E, W, NE, SE, NW, SW],
             corresponding to field[0], [1], ..., [8].
     
