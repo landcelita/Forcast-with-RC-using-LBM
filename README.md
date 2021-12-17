@@ -2,7 +2,7 @@
 
 ## Get Started
 
-you have to install these packages to your system in advance: python3.9, python3-tk, tk-dev, wgrib2, grib2json
+you have to install these packages to your system in advance: python3.9, python3-tk, tk-dev, wgrib2, grib2json, ffmpeg
 
 Then activate the venv environment,
 

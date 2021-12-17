@@ -12,8 +12,7 @@ load_dotenv(override=True)
 
 
 def gen_timestr_by_3h(start, stop):
-    """
-    This generates a time string in the form of "yyyymmddhh" at 3-hour intervals.
+    """This generates a time string in the form of "yyyymmddhh" at 3-hour intervals.
     
     Args:
         start (date): The date which it generates from.
@@ -64,5 +63,6 @@ def update(*args):
     plt.title(timestr[0:4] + "/" + timestr[4:6] + "/" + timestr[6:8])
     return im,
 
-ani = animation.FuncAnimation(fig, update, interval=20)
+ani = animation.FuncAnimation(fig, update, interval=20, frames=365*8)
+# ani.save("pres_plt.mp4", writer="ffmpeg", fps=30, bitrate=1000)
 plt.show()

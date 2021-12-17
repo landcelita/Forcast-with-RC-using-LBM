@@ -4,4 +4,6 @@ env/
 data/*/*.json
 *.grib2
 test
+test.py
 __pycache__
+*.mp4
