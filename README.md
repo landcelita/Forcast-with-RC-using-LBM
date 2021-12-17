@@ -1,4 +1,4 @@
-# Weather cast using Reservoir Computing with LBM
+# Weather forcast using Reservoir Computing with LBM
 
 ## Get Started
 
