@@ -16,8 +16,14 @@ load_dotenv(override=True)
 fig = plt.figure()
 
 YEAR = 2020
-DATA = 2020010100
+DATA = 2020100200
 DATA_DIR = os.getenv("DATA_DIR")
+dx = 5600
+dt = 10
+c = dx / dt
+v_real = 0.000015
+viscosity = v_real * dt / dx**2
+print(viscosity)
 
 grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + str(DATA) + ".grib2")
 grb = grbs.select()[0]
@@ -28,9 +34,9 @@ ugrd = grb1.values
 vgrd = grb2.values
 wind_speed = np.stack([ugrd, vgrd])
 
-lbm = LBM(pressure.shape)
+lbm = LBM(pressure.shape, viscosity=viscosity)
 lbm.rho = pressure
-lbm.u = wind_speed / 500
+lbm.u = wind_speed / c
 im = plt.imshow(lbm.rho, cmap='jet', interpolation='nearest', animated=True)
 
 def update(*args):
@@ -40,6 +46,8 @@ def update(*args):
     im.set_array(pressure)
     return im,
 
-ani = animation.FuncAnimation(fig, update, interval=20, frames=1000)
-# ani.save("data_to_lbm.mp4", writer="ffmpeg", fps=30, bitrate=1000)
-plt.show()
+ani = animation.FuncAnimation(fig, update, interval=12, frames=1000)
+
+ani.save("data_to_lbm.mp4", writer="ffmpeg", fps=30, bitrate=1000)
+# plt.show()
+
