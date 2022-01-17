@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "C:\\Users\\landc\\anaconda3\\Library\\bin",
+        "./src/data",
+        "./src/data"
+    ]
+}

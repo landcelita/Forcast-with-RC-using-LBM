@@ -4,20 +4,16 @@ import sys
 sys.path.append("../LBM")
 from LBM import LBM
 mpl.use('TkAgg')
-import pygrib
-import os
 from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
-
-load_dotenv(override=True)
+sys.path.append("../data")
+from extract import fetchdata
 
 fig = plt.figure()
 
-YEAR = 2020
 DATA = 2020100200
-DATA_DIR = os.getenv("DATA_DIR")
 dx = 5600
 dt = 10
 c = dx / dt
@@ -25,14 +21,7 @@ v_real = 0.000015
 viscosity = v_real * dt / dx**2
 print(viscosity)
 
-grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + str(DATA) + ".grib2")
-grb = grbs.select()[0]
-grb1, grb2 = grbs.select()[1:3]
-
-pressure = grb.values
-ugrd = grb1.values
-vgrd = grb2.values
-wind_speed = np.stack([ugrd, vgrd])
+pressure, wind_speed  = fetchdata(DATA)
 
 lbm = LBM(pressure.shape, viscosity=viscosity)
 lbm.rho = pressure
