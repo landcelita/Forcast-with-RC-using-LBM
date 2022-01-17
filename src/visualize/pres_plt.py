@@ -1,11 +1,12 @@
 from datetime import date, timedelta
 import matplotlib as mpl
 mpl.use('TkAgg')
-import pygrib
 import os
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import numpy as np
+import sys
+sys.path.append("../data")
+from extract import fetchdata
 
 
 def gen_timestr_by_3h(start, stop):
@@ -41,23 +42,14 @@ DATA_DIR = os.getenv("DATA_DIR")
 
 timestr_gen = gen_timestr_by_3h(START, STOP)
 
-grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + next(timestr_gen) + ".grib2")
-grb = grbs.select()[0]
-
-pressure = grb.values
+pressure, _ = fetchdata(next(timestr_gen))
 
 im = plt.imshow(pressure, cmap='jet', interpolation='nearest', animated=True)
 
 def update(*args):
-    timestr = next(timestr_gen)
-
-    grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + timestr + ".grib2")
-    grb = grbs.select()[0]
-
-    pressure = grb.values
+    pressure, _ = fetchdata(next(timestr_gen))
 
     im.set_array(pressure)
-    plt.title(timestr[0:4] + "/" + timestr[4:6] + "/" + timestr[6:8])
     return im,
 
 ani = animation.FuncAnimation(fig, update, interval=20, frames=365*8)
