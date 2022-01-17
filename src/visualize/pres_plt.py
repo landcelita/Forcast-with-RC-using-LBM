@@ -3,12 +3,9 @@ import matplotlib as mpl
 mpl.use('TkAgg')
 import pygrib
 import os
-from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
-
-load_dotenv(override=True)
 
 
 def gen_timestr_by_3h(start, stop):
