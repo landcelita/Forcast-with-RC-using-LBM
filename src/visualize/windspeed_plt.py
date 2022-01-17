@@ -3,13 +3,12 @@ import matplotlib as mpl
 mpl.use('TkAgg')
 import pygrib
 import os
-from dotenv import load_dotenv
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
-
-load_dotenv(override=True)
-
+import sys
+sys.path.append("../data")
+from extract import fetchdata
 
 def gen_timestr_by_3h(start, stop):
     """This generates a time string in the form of "yyyymmddhh" at 3-hour intervals.
@@ -40,29 +39,19 @@ fig = plt.figure()
 YEAR = 2020
 START = date(YEAR, 1, 1)
 STOP = date(YEAR+1, 1, 1)
-DATA_DIR = os.getenv("DATA_DIR")
 
 timestr_gen = gen_timestr_by_3h(START, STOP)
 
-grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + next(timestr_gen) + ".grib2")
-grb1, grb2 = grbs.select()[1:3]
-
-ugrd = grb1.values
-vgrd = grb2.values
-windspeed = ugrd ** 2 + vgrd ** 2
+_, wind = fetchdata(next(timestr_gen))
+windspeed = np.sqrt(wind[0]**2 + wind[1]**2)
 
 im = plt.imshow(windspeed, cmap='jet', interpolation='nearest', animated=True)
 
 def update(*args):
     timestr = next(timestr_gen)
 
-    grbs = pygrib.open(DATA_DIR + str(YEAR) + "/" + timestr + ".grib2")
-    grb1, grb2 = grbs.select()[1:3]
-
-    ugrd = grb1.values
-    vgrd = grb2.values
-
-    windspeed = np.sqrt(ugrd ** 2 + vgrd ** 2) * 10 # 10 times to enhance the contrast
+    _, wind = fetchdata(timestr)
+    windspeed = np.sqrt(wind[0]**2 + wind[1]**2)
 
     im.set_array(windspeed)
     plt.title(timestr[0:4] + "/" + timestr[4:6] + "/" + timestr[6:8])

@@ -3,6 +3,8 @@ sys.path.append("../LBM")
 from LBM import LBM
 import numpy as np
 from Ridge import Ridge
+sys.path.append("../data")
+from extract import fetchdata
 
 class RCwithLBM:
     '''The class of reservoir computing with LBM.
