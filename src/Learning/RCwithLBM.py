@@ -1,22 +1,38 @@
-from datetime import date, timedelta
-import matplotlib as mpl
 import sys
 sys.path.append("../LBM")
 from LBM import LBM
-mpl.use('TkAgg')
-import pygrib
-import os
-from dotenv import load_dotenv
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 import numpy as np
+from Ridge import Ridge
 
-load_dotenv(override=True)
+class RCwithLBM:
+    '''The class of reservoir computing with LBM.
 
-class RC:
-    def __init__(self):
-        self._lbm = None
-        self._initLBM()
+    Attributes:
+        train: the array of a set of training data's time.
+            eg. [2020010100, 2020010200, ...]
+        test: the array of a set of test data's time.
+            eg. [2021010100, 2021010200, ...]
+        delta: How far ahead in hours you want to be correct.
+            If you have test data of 2021010100 and delta = 3,
+            the desired answer will be 2021010103.
+    '''
+    def __init__(self, train, test, delta=3):
+        self._train = train
+        self._test = test
+        self._delta = 3
 
-    def _initLBM(self):
-        self._lbm = LBM()
+    def data_into_LBM_and_set_result(self, step):
+        for tr in self._train:
+            lbm = self._data_into_LBM(tr)
+            for i in range(step):
+                lbm.forward_a_step()
+            self._set_result(lbm)
+
+    def _data_into_LBM(self, train):
+        
+        lbm = LBM()
+
+    def _set_result(lbm):
+        pass
+
+
