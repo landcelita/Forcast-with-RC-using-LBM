@@ -6,35 +6,72 @@ from Ridge import Ridge
 sys.path.append("../data")
 from extract import fetchdata
 
+
 class RCwithLBM:
     '''The class of reservoir computing with LBM.
 
     Attributes:
-        train: the array of a set of training data's time.
+        train: the array of a set of training data's time (int).
             eg. [2020010100, 2020010200, ...]
-        test: the array of a set of test data's time.
+        test: the array of a set of test data's time (int).
             eg. [2021010100, 2021010200, ...]
         delta: How far ahead in hours you want to be correct.
             If you have test data of 2021010100 and delta = 3,
             the desired answer will be 2021010103.
     '''
-    def __init__(self, train, test, delta=3):
+    def __init__(self, train, test, delta=3, v_real=0.000015, dx=5600,\
+                dt=10, Nedge=205, Sedge=305, Wedge=195, Eedge=295, interval=10):
+        self._viscosity = v_real * dt / dx**2
+        self._dx = dx
+        self._dt = dt
+        self._c = dx / dt
         self._train = train
         self._test = test
-        self._delta = 3
+        self._delta = delta
+        self._Nedge = Nedge
+        self._Sedge = Sedge
+        self._Wedge = Wedge
+        self._Eedge = Eedge
+        self._interval = interval
+        self._N_xd = ((Sedge-1-Nedge)//10 + 1) * ((Eedge-1-Wedge)//10 + 1)
+                        # the number of nodes in the reservoir
+        self._X = np.empty((self._N_xd, 0))
+        self._D = np.empty((self._N_xd, 0))
+        self.Wout = None
 
     def data_into_LBM_and_set_result(self, step):
         for tr in self._train:
-            lbm = self._data_into_LBM(tr)
+            lbm_X, lbm_D = self._data_into_LBM(tr)
             for i in range(step):
-                lbm.forward_a_step()
-            self._set_result(lbm)
+                lbm_X.forward_a_step()
+            self._set_result(lbm_X, lbm_D)
 
     def _data_into_LBM(self, train):
+        train_ans = train + self._delta
+        pres, wind = fetchdata(train)
+        pres_ans, wind_ans = fetchdata(train_ans)
+        lbm_X = LBM(pres.shape, viscosity=self._viscosity)
+        lbm_D = LBM(pres.shape, viscosity=self._viscosity)
+        lbm_X.rho = pres
+        lbm_X.u = wind / self._c
+        lbm_D.rho = pres_ans
+        lbm_D.u = wind_ans / self._c
+
+        return lbm_X, lbm_D
+
+    def _set_result(self, lbm_X, lbm_D):
+        x = lbm_X.u[:,self._Nedge:self._Sedge:self._interval,\
+                    self._Wedge:self._Eedge:self._interval]
+        d = lbm_D.u[:,self._Nedge:self._Sedge:self._interval,\
+                    self._Wedge:self._Eedge:self._interval]
         
-        lbm = LBM()
+        print(x.shape)
+        print(d.shape)
+        self._X = np.hstack((self._X, x[0].reshape(-1, 1)))
+        self._D = np.hstack((self._D, d[0].reshape(-1, 1)))
 
-    def _set_result(lbm):
-        pass
-
-
+# #test
+# rc = RCwithLBM([2020010100], [2020010100], delta=0)
+# rc.data_into_LBM_and_set_result(0)
+# print(rc._X)
+# print(rc._D)
