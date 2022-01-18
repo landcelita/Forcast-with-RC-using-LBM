@@ -37,7 +37,7 @@ class RCwithLBM:
                         # the number of nodes in the reservoir
         self._X = np.empty((self._N_xd, 0))
         self._D = np.empty((self._N_xd, 0))
-        self.Wout = None
+        self._Wout = None
 
     def data_into_LBM_and_set_result(self, step):
         for tr in self._train:
@@ -45,6 +45,13 @@ class RCwithLBM:
             for i in range(step):
                 lbm_X.forward_a_step()
             self._set_result(lbm_X, lbm_D)
+
+    def learn(self, beta=0.001):
+        ridge = Ridge(self._X.shape[0], self._D.shape[0], beta)
+        ridge.set_DX(self._D, self._X)
+        self._Wout = ridge.get_Wout_opt()
+        # print(np.dot(self._Wout, self._X) - self._D) # print error
+        return self._Wout
 
     def _data_into_LBM(self, train):
         train_ans = train + self._delta
@@ -65,13 +72,10 @@ class RCwithLBM:
         d = lbm_D.u[:,self._Nedge:self._Sedge:self._interval,\
                     self._Wedge:self._Eedge:self._interval]
         
-        print(x.shape)
-        print(d.shape)
         self._X = np.hstack((self._X, x[0].reshape(-1, 1)))
         self._D = np.hstack((self._D, d[0].reshape(-1, 1)))
 
 # #test
-# rc = RCwithLBM([2020010100], [2020010100], delta=0)
+# rc = RCwithLBM([2020010100, 2020010200], [2020010100, 2020010200], delta=0)
 # rc.data_into_LBM_and_set_result(0)
-# print(rc._X)
-# print(rc._D)
+# print(rc.calc_Wout(0))

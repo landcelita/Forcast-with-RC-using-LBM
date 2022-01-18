@@ -11,7 +11,7 @@ class Ridge:
         '''
         self.beta = beta
         self.X_XT = np.zeros((N_x, N_x))
-        self.D_XT = np.zeros((N_y, N_y))
+        self.D_XT = np.zeros((N_y, N_x))
         self.N_x = N_x
 
     def set_DX(self, D, X):
