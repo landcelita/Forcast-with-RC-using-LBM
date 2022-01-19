@@ -45,8 +45,9 @@ def main():
         _, wind0 = fetchdata(date)
         _, wind3 = fetchdata(date+3)
         diffs.append(np.average(abs(wind0[0] - wind3[0]))) # 水平成分のみ
-
     print(f"change in wind speed for 3 hr: {np.average(diffs)}")
+    print(f"{time.time()-nowtime} s")
+    nowtime = time.time()
 
 
     rc.data_into_LBM_and_set_result()
