@@ -71,8 +71,8 @@ class RCwithLBM:
                     self._Wedge:self._Eedge:self._interval]
             pred = np.dot(self._Wout, x[0].reshape(-1, 1))\
                     .reshape((self._Nvert, self._Nhorz))
-            ans = d[0]
-            diff = abs(pred - ans)
+            ans = d[0] # 水平成分のみ
+            diff = abs(pred - ans) * self._c # convert into m/s
             preds.append(pred)
             diffs.append(diff)
 
