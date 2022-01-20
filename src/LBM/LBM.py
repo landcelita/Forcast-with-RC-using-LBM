@@ -7,6 +7,7 @@ X = 0
 Y = 1
 W = [4/9, 1/9, 1/9, 1/9, 1/9, 1/36, 1/36, 1/36, 1/36]
 DIRECTIONS = [(0,0), (0,1), (0,-1), (1,0), (-1,0), (1,1), (1,-1), (-1,1), (-1,-1)]
+OMEGA = 7.2921159e-5
 
 class LBM:
     """The class of Lattice Boltzmann Method's field.
@@ -26,12 +27,20 @@ class LBM:
             corresponding to field[0], [1], ..., [8].
     
     """
-    def __init__(self, size, viscosity=0.02):
+    def __init__(self, size, viscosity=0.02, dt=10, latmin=22.4, latmax=47.6):
         self._height, self._width = size
         self._u = np.zeros((D, self._height, self._width), np.float64)
         self._field = np.ones((Q, self._height, self._width), np.float64)
         self._rho = np.sum(self._field, axis=0)
         self._omega = 1 / (3 * viscosity + 0.5)
+        self._angv = OMEGA * dt
+        self._latmin = latmin / 180 * np.pi 
+        self._latmax = latmax / 180 * np.pi
+        gfac = np.zeros_like(self._u)
+        lats = np.linspace(self._latmin, self._latmax, gfac.shape[1]).reshape(-1, 1)
+        gfac[0] = np.tile(2 * self._angv * np.sin(lats), (1, gfac.shape[2]))
+        gfac[1] = -gfac[0]
+        self._gfac = gfac
 
     def _shape_validator(self, value1, value2):
         if value1.shape != value2.shape:
@@ -120,7 +129,22 @@ class LBM:
 
         return f_eq
 
+    def _coriolis(self):
+        g = np.zeros_like(self._u)
+
+        g[0] = self._gfac[0] * self._u[1]
+        g[1] = self._gfac[1] * self._u[0]
+
+        for i in range(Q):
+            for j in range(D):
+                if DIRECTIONS[i][j] == 1:
+                    self._field[i] += 3 * W[i] * g[j]
+                if DIRECTIONS[i][j] == -1:
+                    self._field[i] -= 3 * W[i] * g[j]
+
+        self._recalc_u()
 
     def forward_a_step(self):
         self._stream_field()
         self._collide_field()
+        self._coriolis()
