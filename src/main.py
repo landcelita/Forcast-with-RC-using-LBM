@@ -34,36 +34,39 @@ def get_train_and_test_date():
 
     return train, test
 
-def main():
+def exec(step, dt, dx, v_real):
+    print(f"====step: {step}, dt: {dt}, dx: {dx}, v_real: {v_real}====")
     nowtime = time.time()
-
     train, test = get_train_and_test_date()
-    rc = RCwithLBM(train, test, step=5)
+    rc = RCwithLBM(train, test, step=step, dt=dt, dx=dx, v_real=v_real)
 
     diffs = []
     for date in test:
         _, wind0 = fetchdata(date)
         _, wind3 = fetchdata(date+3)
         diffs.append(np.average(abs(wind0[0] - wind3[0]))) # 水平成分のみ
-    print(f"change in wind speed for 3 hr: {np.average(diffs)}")
-    print(f"{time.time()-nowtime} s")
-    nowtime = time.time()
-
+    # print(f"change in wind speed for 3 hr: {np.average(diffs)} ({time.time()-nowtime} s)")
 
     rc.data_into_LBM_and_set_result()
-    print("result set")
-    print(f"{time.time()-nowtime} s")
+    print(f"result set ({time.time()-nowtime} s)")
     nowtime = time.time()
 
     rc.learn(beta=0.001)
-    print("learned")
-    print(f"{time.time()-nowtime} s")
+    print(f"learned ({time.time()-nowtime} s)")
     nowtime = time.time()
 
     preds, diffs = rc.testing()
     print(f"L1 mean error: {np.average(diffs)} m/s")
-    print("tested")
-    print(f"{time.time()-nowtime} s")
+    print(f"tested - ({time.time()-nowtime} s)")
+    print(f"==========================================================")
+
+def main():
+    dt=10
+    dx=5600
+    v_real=0.000015
+
+    for step in range(0,21):
+        exec(step, dt, dx, v_real)
 
     
 
