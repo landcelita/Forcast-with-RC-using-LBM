@@ -83,8 +83,8 @@ class RCwithLBM:
         train_ans = train + self._delta
         pres, wind = fetchdata(train)
         pres_ans, wind_ans = fetchdata(train_ans)
-        lbm_X = LBM(pres.shape, viscosity=self._viscosity)
-        lbm_D = LBM(pres.shape, viscosity=self._viscosity)
+        lbm_X = LBM(pres.shape, viscosity=self._viscosity, dt=self._dt)
+        lbm_D = LBM(pres.shape, viscosity=self._viscosity, dt=self._dt)
         lbm_X.rho = pres
         lbm_X.u = wind / self._c
         lbm_D.rho = pres_ans
