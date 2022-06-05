@@ -1,0 +1,114 @@
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (7.747667074203491 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (4.830288887023926 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.512747049331665 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.225123405456543 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.1179537773132324 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.482628345489502 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (4.143216609954834 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.187256097793579 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.7058990001678467 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.1645679473876953 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.0926201343536377 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (2.9932103157043457 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.1375572681427 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.024918794631958 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.1532976627349854 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.228835344314575 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.050309181213379 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (2.9956610202789307 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.650367498397827 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.2446064949035645 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.212096691131592 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.514796733856201 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.0397725105285645 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.002242088317871 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (2.991791248321533 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.0904111862182617 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.2087342739105225 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.0255346298217773 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.131551504135132 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.0558435916900635 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.0200676918029785 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.1965599060058594 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.08100962638855 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.176292896270752 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.0170114040374756 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.183485984802246 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.1697800159454346 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.1982460021972656 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.3454043865203857 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.2836389541625977 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.3011083602905273 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.1100833415985107 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.215937376022339 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.3266077041625977 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.1025471687316895 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.165114402770996 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (3.2433536052703857 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (4.595094680786133 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (4.648304224014282 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (4.419182300567627 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (4.2193474769592285 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (4.455317258834839 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (4.457024574279785 s)
+====step: 0, dt: 10, dx: 5600, v_real: 1.5e-05====
+change in wind speed for 3 hr: 1.1017453621899322 (4.259887456893921 s)
