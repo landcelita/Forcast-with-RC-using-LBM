@@ -7,3 +7,4 @@ test
 test.py
 __pycache__
 *.mp4
+data/temp/

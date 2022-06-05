@@ -55,6 +55,7 @@ class CNNwithLBM:
             strides=(3, 3)))
         self._model.add(layers.AveragePooling2D((2, 2)))
         self._model.add(layers.Flatten())
+        self._model.add(layers.Dense(500, activation='tanh'))
         self._model.add(layers.Dense(self.ANS_VERT_DIM * self.ANS_HORI_DIM))
         self._model.compile(loss=tf.keras.losses.mean_squared_error, optimizer='sgd',
                     metrics=['mae'])
