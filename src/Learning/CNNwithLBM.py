@@ -50,14 +50,17 @@ class CNNwithLBM:
         self._step = step
             
         self._model = models.Sequential()
-        self._model.add(layers.Conv2D(32, (5, 5),
-            input_shape=(self.INPUT_HEIGHT, self.INPUT_WIDTH, 1),
-            strides=(3, 3)))
+        self._model.add(layers.Conv2D(64, (5, 3),
+            input_shape=(self.INPUT_HEIGHT, self.INPUT_WIDTH, 1), use_bias=False))
+        self._model.add(layers.AveragePooling2D((2, 2)))
+        self._model.add(layers.Conv2D(32, (3, 3), padding='same', use_bias=False))
+        self._model.add(layers.AveragePooling2D((2, 2)))
+        self._model.add(layers.Conv2D(8, (3, 3), padding='same', use_bias=False))
         self._model.add(layers.AveragePooling2D((2, 2)))
         self._model.add(layers.Flatten())
-        self._model.add(layers.Dense(500, activation='tanh'))
-        self._model.add(layers.Dense(self.ANS_VERT_DIM * self.ANS_HORI_DIM))
-        self._model.compile(loss=tf.keras.losses.mean_squared_error, optimizer='sgd',
+        self._model.add(layers.Dense(8192, use_bias=False))
+        self._model.add(layers.Dense(self.ANS_VERT_DIM * self.ANS_HORI_DIM, use_bias=False))
+        self._model.compile(loss=tf.keras.losses.mean_squared_error, optimizer='adam',
                     metrics=['mae'])
 
         self._model.summary()
@@ -116,7 +119,7 @@ class CNNwithLBM:
         self._model.fit(cnn_trains_inputs,
                         cnn_trains_correct_answers,
                         batch_size=16,
-                        epochs=100,
+                        epochs=50,
                         verbose=1,
                         callbacks=[TrueMAE(self._model, 
                                         cnn_tests_inputs,
